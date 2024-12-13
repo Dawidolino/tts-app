@@ -10,6 +10,7 @@ const TextToSpeech = () => {
     const [selectedLanguage, setSelectedLanguage] = useState(null);
     const [selectedVoice, setSelectedVoice] = useState(null);
     const [audioUrl, setAudioUrl] = useState(null)
+    const [audioList, setAudioList] = useState([])
 
     const languages = {
         en: {
@@ -47,11 +48,27 @@ const TextToSpeech = () => {
         try {
           const url = await synthesizeSpeech(text, selectedVoice);
           setAudioUrl(url);
+            
+          //auto save audio to list
+
         } catch (error) {
           alert('Error generating audio. Check console for details.');
         }
+       };
 
-}
+        const handleSaveAudio = () => {
+            if (audioUrl) {
+            const newAudio = { url: audioUrl, text: text, voice: selectedVoice.name };
+            setAudioList([...audioList, newAudio]);
+            setAudioUrl(null);
+            setText('');
+            }
+        };
+
+        const handlePlayAudio = (audioUrl) => {
+            const audio = new Audio(audioUrl);
+            audio.play();
+        };
     return (
     <div style={{ maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
       <h1>Text to Speech</h1>
@@ -119,7 +136,24 @@ const TextToSpeech = () => {
           <a href={audioUrl} download="synthesized-speech.mp3">
             <button>Download Audio</button>
           </a>
+          <button onClick={handleSaveAudio}>Save to List</button>
         </div>
+      )}
+      
+      
+      <h2>Saved Audios:</h2>
+      {audioList.length > 0 ? (
+        <ul>
+          {audioList.map((audio, index) => (
+            <li key={index}>
+              <button onClick={() => handlePlayAudio(audio.url)}>
+                Play: {audio.voice} - {audio.text}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No saved audios yet.</p>
       )}
     </div>
   );
