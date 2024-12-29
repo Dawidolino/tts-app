@@ -1,11 +1,14 @@
-//interface for user to choose lang, voice and do tts
+//idea: interface for user to choose lang, voice and do tts
 //TODO: new icons and design
 
 import React, {useState} from "react";
+import MainTab from "./MainTab";
+import SavedTab from "./SavedTab";
 import { synthesizeSpeech } from "../Api";
-import {FaFlagUsa} from 'react-icons/fa';  // zobaczymy tu xd
+import {FaFlagUsa} from 'react-icons/fa';  
 
 const TextToSpeech = () => {
+    const [activeTab, setActiveTab] = useState("main"); 
     const [text, setText] = useState('');
     const [selectedLanguage, setSelectedLanguage] = useState(null);
     const [selectedVoice, setSelectedVoice] = useState(null);
@@ -30,15 +33,6 @@ const TextToSpeech = () => {
             ],
           },
     }
-    const handleLanguageSelect = (lang) => {
-        setSelectedLanguage(lang);
-        setSelectedVoice(null); // reset voice 
-        setAudioUrl(null); // reset prev audio
-      };
-      const handleVoiceSelect = async (voice) => {
-        setSelectedVoice(voice);
-        setAudioUrl(null); // reset prev audio
-      };
     
       const handleSynthesize = async () => {
         if (!text || !selectedVoice) {
@@ -57,109 +51,42 @@ const TextToSpeech = () => {
           alert('Error generating audio. Check console for details.');
         }
        };
-
-        const handlePlayAudio = (audioUrl) => {
-            const audio = new Audio(audioUrl);
-            audio.play();
-        };
-
-        const handleSelectSavedAudio = (audio) => {
-            setText(audio.text);  //set the text from selected audio
-            setSelectedVoice({ name: audio.voice }); 
-            setAudioUrl(audio.url); // play the audio
-          };
     
-
-    return (
-        <div style={{ maxWidth: '600px', margin: '20px auto', textAlign: 'center' }}>
-        <h1>Text to Speech</h1>
-
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-            {Object.keys(languages).map((lang) => (
-            <button
-                key={lang}
-                onClick={() => handleLanguageSelect(lang)}
-                style={{
-                margin: '0 10px',
-                padding: '10px',
-                background: selectedLanguage === lang ? '#ddd' : '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                }}
-            >
-                {languages[lang].icon}
-            </button>
-            ))}
-        </div>
-
-        {selectedLanguage && (
-            <div style={{ marginBottom: '20px' }}>
-            <h2>{languages[selectedLanguage].name}</h2>
-            {languages[selectedLanguage].voices.map((voice) => (
-                <button
-                key={voice.name}
-                onClick={() => handleVoiceSelect(voice)}
-                style={{
-                    margin: '5px',
-                    padding: '10px',
-                    background: selectedVoice === voice ? '#ddd' : '#fff',
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                }}
-                >
-                {voice.name}
+          return (
+            <div style={{ maxWidth: "600px", margin: "20px auto", textAlign: "center" }}>
+              <nav style={{ marginBottom: "20px" }}>
+                <button onClick={() => setActiveTab("main")} style={{ margin: "0 10px" }}>
+                  Main
                 </button>
-            ))}
+                <button onClick={() => setActiveTab("saved")} style={{ margin: "0 10px" }}>
+                  Saved Audios
+                </button>
+              </nav>
+              {activeTab === "main" && (
+                <MainTab
+                  text={text}
+                  setText={setText}
+                  selectedLanguage={selectedLanguage}
+                  setSelectedLanguage={setSelectedLanguage}
+                  selectedVoice={selectedVoice}
+                  setSelectedVoice={setSelectedVoice}
+                  audioUrl={audioUrl}
+                  setAudioUrl={setAudioUrl}
+                  languages={languages}
+                  handleSynthesize={handleSynthesize}
+                />
+              )}
+              {activeTab === "saved" && (
+                <SavedTab
+                  audioList={audioList}
+                  setText={setText}
+                  setSelectedVoice={setSelectedVoice}
+                  setAudioUrl={setAudioUrl}
+                  setActiveTab={setActiveTab}
+                />
+              )}
             </div>
-        )}
-
-        {selectedVoice && (
-            <>
-            <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Enter text here"
-                rows="4"
-                style={{ width: '100%', marginBottom: '10px' }}
-            />
-            <button onClick={handleSynthesize}>Convert to Speech</button>
-            </>
-        )}
-
-            {audioUrl && (
-            <div style={{ marginTop: '20px' }}>
-            <audio key={audioUrl} controls>
-                <source src={audioUrl} type="audio/mp3" />
-            </audio>
-            <br />
-            <a href={audioUrl} download="synthesized-speech.mp3">
-                <button>Download Audio</button>
-            </a>          
-            </div>
-        )}
-
-        <h2>Saved Audios:</h2>
-        {audioList.length > 0 ? (
-            <ul>
-            {audioList.map((audio, index) => (
-                <li key={index}>
-                <button onClick={() => handlePlayAudio(audio.url)}>
-                    Play: {audio.voice} - {audio.text}
-                </button>
-                <br />
-                <button onClick={() => handleSelectSavedAudio(audio)}>
-                    Load Text & Voice
-                </button>
-                </li>
-            ))}
-            </ul>
-        ) : (
-            <p>No saved audios yet.</p>
-        )}
-        </div>
-    );
-    };
-
+          );
+        };
+    
     export default TextToSpeech;
