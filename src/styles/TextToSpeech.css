@@ -1,0 +1,145 @@
+.text-to-speech-app {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .text-to-speech-app h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .navbar button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .navbar button:hover {
+    color: #000;
+  }
+  
+  .navbar button.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+  }
+  
+
+  .main-tab {
+    text-align: center;
+  }
+  
+  .main-tab h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .language-buttons,
+  .voice-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .language-buttons button,
+  .voice-buttons button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    border: 1px solid #918383;
+    border-radius: 5px;
+    background-color: #918383;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .language-buttons button:hover,
+  .voice-buttons button:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+  }
+  
+  .language-buttons button.active,
+  .voice-buttons button.active {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+
+  .main-tab textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  .main-tab button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .main-tab button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .saved-tab ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .saved-tab li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .saved-tab button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #42484e;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .saved-tab button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActiveTab }) => {
+const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActiveTab, setSelectedLanguage, languages }) => {
   const handlePlayAudio = (audioUrl) => {
     const audio = new Audio(audioUrl);
     audio.play();
@@ -9,12 +9,19 @@ const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActive
   const handleSelectSavedAudio = (audio) => {
     setText(audio.text);
     setSelectedVoice({ name: audio.voice });
+    
+    // Find the language based on the selected voice
+    const lang = Object.keys(languages).find(lang => 
+      languages[lang].voices.some(v => v.name === audio.voice)
+    );
+    setSelectedLanguage(lang);  // Now this will work properly
+    
     setAudioUrl(audio.url);
     setActiveTab("main");
   };
 
   return (
-    <div>
+    <div className="saved-tab">
       <h2>Saved Audios</h2>
       {audioList.length > 0 ? (
         <ul>

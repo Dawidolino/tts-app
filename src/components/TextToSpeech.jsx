@@ -6,6 +6,7 @@ import MainTab from "./MainTab";
 import SavedTab from "./SavedTab";
 import { synthesizeSpeech } from "../Api";
 import {FaFlagUsa} from 'react-icons/fa';  
+import "../styles/TextToSpeech.css";
 
 const TextToSpeech = () => {
     const [activeTab, setActiveTab] = useState("main"); 
@@ -78,12 +79,15 @@ const TextToSpeech = () => {
               )}
               {activeTab === "saved" && (
                 <SavedTab
-                  audioList={audioList}
-                  setText={setText}
-                  setSelectedVoice={setSelectedVoice}
-                  setAudioUrl={setAudioUrl}
-                  setActiveTab={setActiveTab}
-                />
+                audioList={audioList}
+                setText={setText}
+                setSelectedVoice={setSelectedVoice}
+                setAudioUrl={setAudioUrl}
+                setActiveTab={setActiveTab}
+                setSelectedLanguage={setSelectedLanguage}  
+                languages={languages}
+              />
+              
               )}
             </div>
           );
