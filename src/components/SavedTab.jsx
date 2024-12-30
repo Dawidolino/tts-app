@@ -14,7 +14,7 @@ const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActive
     const lang = Object.keys(languages).find(lang => 
       languages[lang].voices.some(v => v.name === audio.voice)
     );
-    setSelectedLanguage(lang);  // Now this will work properly
+    setSelectedLanguage(lang);  
     
     setAudioUrl(audio.url);
     setActiveTab("main");
