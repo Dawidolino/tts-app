@@ -20,6 +20,17 @@ const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActive
     setActiveTab("main");
   };
 
+   // Function to get display name of the voice
+   const getVoiceDisplayName = (voiceName) => {
+    for (const langKey in languages) {
+      const voice = languages[langKey].voices.find(v => v.name === voiceName);
+      if (voice) {
+        return voice.displayName;  // Return the displayName of the voice
+      }
+    }
+    return voiceName; // Return the name if not found
+  };
+
   return (
     <div className="saved-tab">
       <h2>Saved Audios</h2>
@@ -28,7 +39,7 @@ const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActive
           {audioList.map((audio, index) => (
             <li key={index}>
               <button onClick={() => handlePlayAudio(audio.url)}>
-                Play: {audio.voice} - {audio.text}
+                Play:  " {audio.text} "  ({getVoiceDisplayName(audio.voice)})
               </button>
               <button onClick={() => handleSelectSavedAudio(audio)}>
                 Load Text & Voice
