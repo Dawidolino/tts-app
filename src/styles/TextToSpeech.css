@@ -8,6 +8,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
     text-align: center;
+    text-decoration: none;
 }
 
 .text-to-speech-app h1 {
@@ -92,7 +93,7 @@
 }
 
 /* Text */
-.main-tab textarea {
+.main-tab-textarea {
     width: 100%;
     max-width: 700px;
     padding: 15px;
@@ -111,7 +112,7 @@
     margin-top: 20px;
 }
 
-.main-tab button {
+.main-tab-button {
     padding: 15px 30px;
     border: none;
     background-color: #007bff;
@@ -123,7 +124,7 @@
     margin-bottom: 20px;
 }
 
-.main-tab button:hover {
+.main-tab-button:hover {
     background-color: #0056b3;
 }
 
@@ -133,7 +134,7 @@
     max-width: 100%;
 }
 
-.main-tab .download-button {
+.download-button {
     padding: 10px 20px;
     border: none;
     background-color: #28a745;
@@ -143,13 +144,19 @@
     cursor: pointer;
     transition: background-color 0.3s;
     display: block;
-    margin: 20px auto !important;
+    margin: 20px auto ;
 }
 
-.main-tab .download-button:hover {
+.download-button:hover {
     background-color: #218838;
 }
+a {
+    text-decoration: none; /* Zapewnia, że linki nie będą miały domyślnego podkreślenia */
+}
 
+a:hover {
+    text-decoration: none; /* Zapobiega pojawianiu się podkreślenia podczas najeżdżania */
+}
 /* Saved Tab */
 .saved-tab ul {
     list-style: none;
