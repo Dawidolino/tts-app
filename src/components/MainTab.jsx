@@ -25,7 +25,7 @@ const MainTab = ({
 
   return (
     <div className="text-to-speech-app">
-      <h1>Text to Speech</h1>
+      <h2>Select language and voice:</h2>
       
       {/* Language selection buttons */}
       <div className="language-buttons">
