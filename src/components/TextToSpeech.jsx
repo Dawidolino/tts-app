@@ -19,8 +19,8 @@ const TextToSpeech = () => {
       name: 'English',
       icon: <Flag code="USA" alt="American Flag" style={{ width: "35px", height: "auto" }} />,
       voices: [
-        { name: 'en-US-Wavenet-A', language: 'en-US', displayName: "US Female Voice" },
-        { name: 'en-US-Wavenet-D', language: 'en-US', displayName: "US Male Voice" },
+        { name: 'en-US-Wavenet-A', language: 'en-US', displayName: "US Male Voice 1" },
+        { name: 'en-US-Wavenet-D', language: 'en-US', displayName: "US Male Voice 2" },
       ],
     },
     pl: {
