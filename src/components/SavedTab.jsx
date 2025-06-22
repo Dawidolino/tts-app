@@ -9,26 +9,26 @@ const SavedTab = ({ audioList, setText, setSelectedVoice, setAudioUrl, setActive
   const handleSelectSavedAudio = (audio) => {
     setText(audio.text);
     setSelectedVoice({ name: audio.voice });
-    
-    // Find the language based on the selected voice
-    const lang = Object.keys(languages).find(lang => 
+
+    // find the language based on the selected voice
+    const lang = Object.keys(languages).find(lang =>
       languages[lang].voices.some(v => v.name === audio.voice)
     );
-    setSelectedLanguage(lang);  
-    
+    setSelectedLanguage(lang);
+
     setAudioUrl(audio.url);
     setActiveTab("main");
   };
 
-   // Function to get display name of the voice
-   const getVoiceDisplayName = (voiceName) => {
+  // function to get display name of the voice
+  const getVoiceDisplayName = (voiceName) => {
     for (const langKey in languages) {
       const voice = languages[langKey].voices.find(v => v.name === voiceName);
       if (voice) {
-        return voice.displayName;  // Return the displayName of the voice
+        return voice.displayName;  // return the displayName of the voice
       }
     }
-    return voiceName; // Return the name if not found
+    return voiceName; // return the name if not found
   };
 
   return (

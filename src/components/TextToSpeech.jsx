@@ -41,7 +41,7 @@ const TextToSpeech = () => {
       const url = await synthesizeSpeech(text, selectedVoice);
       setAudioUrl(url);
 
-      // Auto save audio to list
+      // auto save audio to list
       const newAudio = { url, text, voice: selectedVoice.name };
       setAudioList([...audioList, newAudio]);
     } catch (error) {
