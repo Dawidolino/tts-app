@@ -1,4 +1,12 @@
-# Author Dawid Ruth 58411 INMN3 
+# Autor Dawid Ruth 58411 INMN3 
+
+Projekt korzysta z zewnętrznego API od Googla na text to speech. Użytkownik może wygenerować dźwięk w 2 językach - polskim i angielskim, wybierając jeden z dwóch dostępnych głosów dla danego języka. Następnie dźwięki można pobrać z listy utworzonych dźwięków. Program umożliwia również ponowne załadowanie dźwięku z listy i odtworzenie go. Wszelkie dźwięki czyszczą się przy odświeżeniu przeglądarki.
+
+
+
+
+
+
 
 # Getting Started with Create React App
 
