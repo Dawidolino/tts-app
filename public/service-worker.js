@@ -28,7 +28,7 @@ self.addEventListener('activate', event => {
     self.clients.claim();
 });
 
-// serve cached content when offline - wont work with this API since it needs to be online to send requests but idk if its required so Im leaving the idea
+// serve cached content when offline - wont work with this API since it needs to be online to send requests
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(response =>
